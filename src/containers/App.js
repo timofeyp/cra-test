@@ -9,7 +9,7 @@ const App = () => (
   <div>
     <Switch>
       <Route path="/login" component={Login} />
-      <Route path="/crud" component={whenAuthorized(CRUD)} />
+      <Route path="/" component={whenAuthorized(CRUD)} />
     </Switch>
   </div>
 );

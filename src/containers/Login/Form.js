@@ -8,21 +8,9 @@ const View = ({ handleSubmit }) => (
     <Col className="mx-auto" xs={4}>
       <Form onSubmit={handleSubmit} style={{ marginTop: '50%' }}>
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
+          <Field name="email" type="email" label="Email" />
         </Form.Group>
-        <Field
-          name="password"
-          type="password"
-          label="Password"
-          className="form-control"
-        />
-        <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
+        <Field name="password" type="password" label="Password" />
         <Button variant="primary" type="submit">
           Submit
         </Button>
@@ -31,6 +19,8 @@ const View = ({ handleSubmit }) => (
   </Row>
 );
 
-View.propTypes = {};
+View.propTypes = {
+  handleSubmit: PropTypes.func,
+};
 
 export default View;
