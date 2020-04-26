@@ -11,7 +11,7 @@ const Wrapper = ({ wrapped: Component, isAuth, history: { push } }) => {
 };
 
 Wrapper.propTypes = {
-  wrapped: PropTypes.func,
+  wrapped: PropTypes.object,
   isAuth: PropTypes.bool,
   history: PropTypes.object,
 };

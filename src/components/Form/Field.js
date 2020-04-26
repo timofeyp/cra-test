@@ -1,6 +1,8 @@
 import React from 'react';
 import { Form, InputGroup } from 'react-bootstrap';
 import { Field } from 'formik';
+import PropTypes from 'prop-types';
+import View from '../../containers/Login/Form';
 
 const FormTextField = ({
   as,
@@ -11,9 +13,8 @@ const FormTextField = ({
   type,
   inputGroupPrepend,
 }) => (
-  <Field
-    name={name}
-    render={({ field, form }) => {
+  <Field name={name}>
+    {({ field, form }) => {
       const isValid = !form.errors[field.name];
       const isInvalid = form.touched[field.name] && !isValid;
       return (
@@ -36,8 +37,18 @@ const FormTextField = ({
         </Form.Group>
       );
     }}
-  />
+  </Field>
 );
+
+FormTextField.propTypes = {
+  as: PropTypes.any,
+  md: PropTypes.string,
+  controlId: PropTypes.string,
+  label: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  inputGroupPrepend: PropTypes.object,
+};
 
 FormTextField.defaultProps = {
   type: 'text',

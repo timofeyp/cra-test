@@ -1,6 +1,6 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-
+import { persistStore } from 'redux-persist';
 import { routerMiddleware } from 'connected-react-router';
 import { rootReducer, rootSaga } from './rootDuck';
 import history from '../utils/history';
@@ -28,7 +28,7 @@ const middlewares = [sagaMiddleware, routerMiddleware(history)];
 const initialState = {};
 
 const enhancers = [applyMiddleware(...middlewares)];
-const index = createStore(
+const store = createStore(
   rootReducer,
   initialState,
   composeEnhancers(...enhancers),
@@ -38,7 +38,8 @@ const index = createStore(
  * @see https://github.com/rt2zz/redux-persist#persiststorestore-config-callback
  * @see https://github.com/rt2zz/redux-persist#persistor-object
  */
+export const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
 
-export default index;
+export default store;

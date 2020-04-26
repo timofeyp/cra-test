@@ -1,13 +1,12 @@
-import session from 'api/session';
-import schedule from 'api/schedule';
-import creating from 'api/creating';
-import ldap from 'api/ldap';
-import VCParts from 'api/v-c-parts';
+import getSessionExports from 'api/session';
+import getTaskExports from 'api/task';
+import { axios, setTokens } from 'api/client';
+
+const session = getSessionExports(axios);
+const task = getTaskExports(axios);
 
 export default {
   session,
-  schedule,
-  creating,
-  ldap,
-  VCParts,
+  task,
+  setTokens,
 };
