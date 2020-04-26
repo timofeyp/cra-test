@@ -13,6 +13,7 @@ import API from 'api';
 export const fetchSessionRoutine = createAction('FETCH_SESSION', 'session');
 export const setTokensRoutine = createAction('SET_TOKENS', 'session');
 export const fetchAuthRoutine = createAction('FETCH_AUTH', 'session');
+export const fetchRegisterRoutine = createAction('FETCH_REGISTER', 'session');
 export const logoutRoutine = createAction('LOGOUT', 'session');
 
 export const initialState = {
@@ -77,6 +78,13 @@ function* fetchAuth({ payload }) {
   }
 }
 
+function* fetchRegister({ payload }) {
+  const { values, formikActions } = payload;
+  const res = yield call(API.session.fetchRegister, values);
+  const { user } = res.data;
+  formikActions.setStatus(`USER REGISTERED: ${user.name}`);
+}
+
 function* setTokens() {
   const { token, refreshToken } = yield select(store => store.session);
   API.setTokens({ token, refreshToken });
@@ -105,4 +113,5 @@ export function* saga() {
   yield takeLatest(logoutRoutine.TRIGGER, fetchLogout);
   yield takeLatest(fetchAuthRoutine.TRIGGER, fetchAuth);
   yield takeLatest(setTokensRoutine.TRIGGER, setTokens);
+  yield takeLatest(fetchRegisterRoutine.TRIGGER, fetchRegister);
 }

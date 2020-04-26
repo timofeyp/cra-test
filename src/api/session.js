@@ -5,6 +5,10 @@ const getExports = axios => {
     return yield call(axios.post, '/api/auth/login', values);
   }
 
+  function* fetchRegister(values) {
+    return yield call(axios.post, '/api/auth/register', values);
+  }
+
   function* fetchSession() {
     return yield call(axios.get, '/api/auth/session');
   }
@@ -13,7 +17,7 @@ const getExports = axios => {
     return yield call(axios.post, '/api/auth/logout', values);
   }
 
-  return { fetchAuth, fetchSession, fetchLogout };
+  return { fetchAuth, fetchSession, fetchLogout, fetchRegister };
 };
 
 export default getExports;

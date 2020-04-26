@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import CRUD from 'containers/CRUD';
 import Login from 'containers/Login';
+import Register from 'containers/Register';
 import { whenAuthorized } from 'auth';
 import { connect } from 'react-redux';
 import {
@@ -21,6 +22,7 @@ const App = ({ setTokens, token, refreshToken, isAuth, isSessionLoading }) => {
     <div>
       <Switch>
         <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
         <Route path="/" component={whenAuthorized(CRUD)} />
       </Switch>
     </div>
